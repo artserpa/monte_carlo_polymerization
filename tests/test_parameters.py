@@ -20,6 +20,7 @@ def test_kinetic_constants_creation():
         k_tc = 1e7
     )
     assert k.k_p == 1000.0
+    print("kinetic_constants created successfully")
 
 def test_initial_conditions_creation():
     """Test: Create initial conditions"""
@@ -28,6 +29,7 @@ def test_initial_conditions_creation():
         initiator_concentration=0.01
     )
     assert ic.monomer_concentration == 8.0
+    print("initial_conditions created successfully")
 
 def test_reactor_conditions_creation():
     """Test: Create reactor conditions"""
@@ -36,11 +38,13 @@ def test_reactor_conditions_creation():
         volume=2.e-16
     )
     assert rc.temperature == 373.15
+    print("reactor_conditions created successfully")
 
 def test_simulation_parameters_creation():
     """Test: Create simulation parameters"""
     sp = simulation_parameters(max_time=1000.0)
     assert sp.max_time == 1000.0
+    print("simulation_parameters created successfully")
 
 def test_polymerization_parameters_full():
     """Test: Create complete object and calculate molecules"""
@@ -53,6 +57,7 @@ def test_polymerization_parameters_full():
 
     assert params.initial.n_monomer is not None
     assert params.initial.n_monomer > 0
+    print("polymerization_parameters created and molecules calculated")
 
 def test_to_dict():
     """Test: Convert to dictionary"""
@@ -65,3 +70,20 @@ def test_to_dict():
     params_dict = params.to_dict()
 
     assert 'kinetic_constants' in params_dict
+    print("Conversion to dictionary sucessful")
+
+if __name__ == "__main__":
+    print("\n" + "="*60)
+    print("TESTING: parameters.py")
+    print("="*60 + "\n")
+    
+    test_kinetic_constants_creation()
+    test_initial_conditions_creation()
+    test_reactor_conditions_creation()
+    test_simulation_parameters_creation()
+    test_polymerization_parameters_full()
+    test_to_dict()
+    
+    print("\n" + "="*60)
+    print("ALL TESTS PASSED!")
+    print("="*60 + "\n")
